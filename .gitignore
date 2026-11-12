@@ -19,3 +19,8 @@ xcuserdata/
 .specstory/
 .claude/settings.local.json
 .claude/worktrees/
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.claude/gtm-planner.local.md
