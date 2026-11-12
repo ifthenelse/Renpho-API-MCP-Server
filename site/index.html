@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Renpho MCP Server: ask your AI about your Renpho data</title>
+<meta name="description" content="A read-only, containerized MCP server that lets Claude and other AI assistants query your Renpho scale and tape-measure data. Nothing installed, nothing hosted.">
+<link rel="canonical" href="https://ifthenelse.github.io/Renpho-API-MCP-Server/">
+<meta name="theme-color" content="#0f172a">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="img/favicon.png" type="image/png" sizes="512x512">
+<link rel="apple-touch-icon" href="img/favicon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Renpho MCP Server">
+<meta property="og:title" content="Renpho MCP Server: ask your AI about your Renpho data">
+<meta property="og:description" content="A read-only, containerized MCP server that lets Claude and other AI assistants query your Renpho scale and tape-measure data. Nothing installed, nothing hosted.">
+<meta property="og:url" content="https://ifthenelse.github.io/Renpho-API-MCP-Server/">
+<meta property="og:image" content="https://ifthenelse.github.io/Renpho-API-MCP-Server/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Renpho MCP Server: a scale icon connected to a chat bubble">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"Renpho MCP Server","description":"A read-only, containerized MCP server that lets AI assistants query Renpho scale and tape-measure data.","codeRepository":"https://github.com/ifthenelse/Renpho-API-MCP-Server","programmingLanguage":"Python","license":"https://opensource.org/licenses/MIT","url":"https://ifthenelse.github.io/Renpho-API-MCP-Server/"}
+</script>
+</head>
+<body>
+<header><div class="wrap">
+<a class="brand" href="./"><img src="img/mark.svg" alt="" width="36" height="36">Renpho MCP Server</a>
+<nav aria-label="Main"><a href="./#quickstart">Quickstart</a><a href="compare.html">Compare</a><a href="faq.html">FAQ</a><a href="https://github.com/ifthenelse/Renpho-API-MCP-Server">GitHub</a></nav>
+</div></header>
+<main class="wrap">
+<section class="hero">
+<h1>Ask your AI about your Renpho data. Nothing installed, nothing hosted.</h1>
+<p class="lead">This Renpho MCP server is read-only and runs in a Docker container. It answers questions about your Renpho scale and tape-measure history from Claude or any MCP client.</p>
+<div class="btns"><a class="btn primary" href="#quickstart">Quickstart</a><a class="btn" href="https://github.com/ifthenelse/Renpho-API-MCP-Server">View on GitHub</a></div>
+</section>
+
+<section aria-labelledby="why">
+<h2 id="why">Why a container</h2>
+<div class="grid">
+<div class="card"><img src="img/mark.svg" alt="" width="44" height="44"><h3>Contained</h3><p>Runs as a non-root user in a Docker image built from a locked dependency file. Nothing is installed on your machine except the image.</p></div>
+<div class="card"><img src="img/tool-summary.svg" alt="" width="44" height="44"><h3>Stays local</h3><p>No account on a hosted service. Your password sits in the container's environment and is sent to Renpho by the SDK. It is read-only: no tool can change your account.</p></div>
+<div class="card"><img src="img/tool-girth.svg" alt="" width="44" height="44"><h3>Scale and tape</h3><p>Ask about weigh-ins and tape-measure girth (waist, hip, arms, thighs) in the same conversation.</p></div>
+</div>
+</section>
+
+<section aria-labelledby="quickstart">
+<h2 id="quickstart">Quickstart</h2>
+<p>You need Docker and a Renpho Health account (email and password).</p>
+<ol class="steps">
+<li><strong>Build the image</strong>
+<pre><code>git clone https://github.com/ifthenelse/Renpho-API-MCP-Server.git
+cd Renpho-API-MCP-Server
+docker build -t renpho-mcp .</code></pre></li>
+<li><strong>Store your credentials</strong> in a git-ignored file
+<pre><code>cp .env.example .env
+# edit .env: RENPHO_EMAIL=you@example.com  RENPHO_PASSWORD=your-password</code></pre></li>
+<li><strong>Add it to your MCP client.</strong> Claude Code:
+<pre><code>claude mcp add renpho -- docker run -i --rm --env-file "$PWD/.env" renpho-mcp</code></pre>
+Other clients, in their MCP config:
+<pre><code>{"mcpServers": {"renpho": {"command": "docker",
+  "args": ["run", "-i", "--rm", "--env-file", "/abs/path/to/.env", "renpho-mcp"]}}}</code></pre></li>
+<li><strong>Ask.</strong> "Summarize my Renpho data." "Show my weekly average weight and body fat since January." "How has my waist changed this year?"</li>
+</ol>
+</section>
+
+<section aria-labelledby="tools">
+<h2 id="tools">Three tools</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Tool</th><th>What it does</th></tr></thead>
+<tbody>
+<tr><td><code>summary</code></td><td>Latest reading, 30-day change per metric, record count and date range. Start here.</td></tr>
+<tr><td><code>measurements</code></td><td>Scale history as a compact table. Pick metrics (<code>weight</code>, <code>bodyfat</code>, <code>muscle</code>, <code>water</code>, <code>bmr</code> and more), filter by date, and average by day, week or month.</td></tr>
+<tr><td><code>girth</code></td><td>Tape-measure history in centimetres: neck, chest, waist, hip, arms, thighs, calves and waist-to-hip ratio.</td></tr>
+</tbody></table></div>
+</section>
+
+<section aria-labelledby="short">
+<h2 id="short">How answers stay short</h2>
+<p>Every tool returns plain tab-separated text with one header row, rounded numbers and blank cells where nothing was measured. You choose the columns, a date range and a period, so a year of weigh-ins can come back as a dozen rows. History is fetched once and cached for 15 minutes.</p>
+</section>
+
+<section aria-labelledby="more">
+<h2 id="more">Read more</h2>
+<p><a href="compare.html">Compare the ways to connect Renpho to an AI assistant</a> · <a href="faq.html">FAQ: password, status, trademarks, Docker</a></p>
+</section>
+</main>
+<footer><div class="wrap">
+<p>Renpho MCP Server is an independent open-source project (MIT). It is not affiliated with, endorsed by or sponsored by Renpho. Renpho is a trademark of its owner.</p>
+<p>It uses the unofficial, reverse-engineered <a href="https://pypi.org/project/renpho-api/">renpho-api</a> client, so Renpho can change its API without notice.</p>
+<p><a href="https://github.com/ifthenelse/Renpho-API-MCP-Server">Source</a> · <a href="https://github.com/ifthenelse/Renpho-API-MCP-Server/issues">Issues and proposals</a> · <a href="faq.html">FAQ</a></p>
+</div></footer>
+</body>
+</html>

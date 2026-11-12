@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120" role="img">
+
+<g fill="none" stroke="#0F172A" stroke-width="8" stroke-linejoin="round" stroke-linecap="round">
+ <!-- A curled tape with its loose end crossing the coil -->
+ <path d="M88 38 C70 20 39 22 25 43 C9 68 27 96 54 98 C80 100 101 79 97 59 C94 43 80 35 67 38 C53 40 46 55 52 66 C57 76 69 79 79 71" />
+ <path d="M78 71 L96 79" />
+ <!-- Fine tape graduations near the end -->
+ <path d="M78 65 L82 60" stroke-width="5" />
+ <path d="M85 69 L89 64" stroke="#14B8A6" stroke-width="6" />
+</g>
+</svg>
