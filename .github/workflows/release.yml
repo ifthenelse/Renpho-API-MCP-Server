@@ -1,10 +1,10 @@
-# CD: pushing a tag vX.Y.Z publishes the image to GHCR.
+# CD: pushing a tag vX.Y.Z publishes the image to GHCR and a GitHub Release.
 name: Release
 on:
   push:
     tags: ["v*"]
 permissions:
-  contents: read
+  contents: write
   packages: write
 jobs:
   image:
@@ -24,3 +24,7 @@ jobs:
           tags: |
             ghcr.io/${{ github.repository_owner }}/renpho-mcp:${{ github.ref_name }}
             ghcr.io/${{ github.repository_owner }}/renpho-mcp:latest
+      - name: GitHub Release with auto-generated notes
+        run: gh release create "$GITHUB_REF_NAME" --generate-notes --verify-tag
+        env:
+          GH_TOKEN: ${{ github.token }}
