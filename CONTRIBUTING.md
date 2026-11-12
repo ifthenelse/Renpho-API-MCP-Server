@@ -23,4 +23,4 @@ Enable the template once: `git config commit.template .gitmessage.txt`.
 - Single-maintainer repository: document how self-review is done (checklist in the PR template, cooling-off before merge).
 
 ## Escalation
-TODO: whom to contact for blocked reviews, security concerns or production incidents.
+Bugs, questions and improvement proposals: open an issue in the GitHub project's **Issues** tab. Security concerns: see [SECURITY.md](SECURITY.md) (do not use public issues).
