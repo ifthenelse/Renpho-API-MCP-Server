@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="500" viewBox="0 0 2000 500" role="img">
+
+<g transform="translate(54 40) scale(3.5)"><g stroke="#0F172A" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+  <!-- Body composition scale, viewed from above -->
+  <rect x="9" y="31" width="60" height="60" rx="14"/>
+  <!-- AI speech bubble: its tail faces the scale -->
+  <path d="M90 34 H100 A10 10 0 0 1 110 44 V62 A10 10 0 0 1 100 72 H98 L88 81 V72 A10 10 0 0 1 79 62 V44 A10 10 0 0 1 89 34 Z"/>
+  <!-- The connection is the only other accent -->
+  <path d="M69 56 H79" stroke="#14B8A6"/>
+  <path d="M74 50 V62" stroke="#14B8A6" stroke-width="6"/>
+  <circle cx="39" cy="46" r="5.5" fill="#14B8A6" stroke="none"/>
+</g></g>
+</svg>
