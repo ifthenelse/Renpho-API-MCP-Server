@@ -1,0 +1,21 @@
+# dependencies / build
+node_modules/
+build/
+dist/
+target/
+coverage/
+*.log
+.tmp/
+# env
+.env
+.env.local
+.env.*.local
+# OS / editors
+.DS_Store
+# Xcode
+DerivedData/
+xcuserdata/
+# AI tooling (history is kept in ~/.claude and ~/.codex, not in the repo)
+.specstory/
+.claude/settings.local.json
+.claude/worktrees/

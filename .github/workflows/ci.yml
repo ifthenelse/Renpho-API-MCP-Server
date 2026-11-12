@@ -1,0 +1,14 @@
+# CI is the authoritative gate. Pin actions to commit SHAs if your policy requires it.
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash scripts/verify
