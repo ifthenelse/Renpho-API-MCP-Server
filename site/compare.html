@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Connect Renpho to Claude: MCP server options compared</title>
+<meta name="description" content="Compare community Renpho MCP servers, hosted bridges and the Apple Health route for connecting Renpho data to Claude or another AI assistant.">
+<link rel="canonical" href="https://ifthenelse.github.io/Renpho-API-MCP-Server/compare.html">
+<meta name="theme-color" content="#0f172a">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="img/favicon.png" type="image/png" sizes="512x512">
+<link rel="apple-touch-icon" href="img/favicon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Renpho MCP Server">
+<meta property="og:title" content="Connect Renpho to Claude: MCP server options compared">
+<meta property="og:description" content="Compare community Renpho MCP servers, hosted bridges and the Apple Health route for putting Renpho scale data in Claude or another AI assistant.">
+<meta property="og:url" content="https://ifthenelse.github.io/Renpho-API-MCP-Server/compare.html">
+<meta property="og:image" content="https://ifthenelse.github.io/Renpho-API-MCP-Server/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Renpho MCP Server: a scale icon connected to a chat bubble">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header><div class="wrap">
+<a class="brand" href="./"><img src="img/mark.svg" alt="" width="36" height="36">Renpho MCP Server</a>
+<nav aria-label="Main"><a href="./#quickstart">Quickstart</a><a href="compare.html">Compare</a><a href="faq.html">FAQ</a><a href="https://github.com/ifthenelse/Renpho-API-MCP-Server">GitHub</a></nav>
+</div></header>
+<main class="wrap">
+<section class="hero">
+<h1>Connect Renpho to Claude: your options</h1>
+<p class="lead">Each Renpho MCP server and bridge can put Renpho scale data in front of an AI assistant. Here is how they differ, checked against their public pages on 2026-11-12. Projects change, so verify before you choose.</p>
+</section>
+
+<section>
+<h2>Servers that log in to Renpho</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Project</th><th>How it runs</th><th>Where your password goes</th></tr></thead>
+<tbody>
+<tr><td><a href="https://github.com/StartupBros-com/renpho-mcp-server">StartupBros/renpho-mcp-server</a></td><td>Node.js 18+, clone and build locally. Body composition, trends, history, sync diagnostics. MIT.</td><td>Environment variable on your machine, sent to Renpho.</td></tr>
+<tr><td><a href="https://github.com/jegork/renpho-mcp">jegork/renpho-mcp</a></td><td>Node.js, run with npx or a single-file bundle. Read-only. MIT.</td><td>Environment variable on your machine, sent to Renpho.</td></tr>
+<tr><td><a href="https://github.com/a1dancole/renpho-mcp">a1dancole/renpho-mcp</a></td><td>Remote server on Cloudflare Workers, works on Claude web, desktop and mobile. Trend and goal tools. MIT.</td><td>Kept server-side, encrypted in its OAuth grant, so it can refresh sessions (per its README).</td></tr>
+<tr><td>Renpho MCP Server (this project)</td><td>Docker image run over stdio, read-only, includes tape-measure data. MIT.</td><td>Environment variable in your container, sent to Renpho by the SDK.</td></tr>
+</tbody></table></div>
+</section>
+
+<section>
+<h2>Routes that do not use your Renpho password</h2>
+<p><strong>Apple Health or Health Connect.</strong> The Renpho Health app can write readings to Apple Health (iPhone) or Health Connect (Android). Hosted services such as <a href="https://wellnessproject.ai/guides/connect-renpho-scale-to-ai">Wellness Project</a> read that data and serve it to Claude or ChatGPT, and local Apple Health MCP servers exist as well. You avoid sharing the Renpho login, but your data goes through a hub and, for hosted services, a third party.</p>
+<p><strong>CSV export.</strong> The <a href="https://pypi.org/project/renpho-api/">renpho-api</a> command-line tool can save your history as JSON and CSV, which you can upload to an assistant by hand.</p>
+</section>
+
+<section>
+<h2>Which should you pick?</h2>
+<ul>
+<li>You want a container and no Node toolchain on your machine, or you also use the tape measure: this project.</li>
+<li>You want a Node server with the most features, or the biggest user base among Renpho servers: StartupBros.</li>
+<li>You want an npx one-liner: jegork.</li>
+<li>You want it inside Claude on your phone and accept a hosted component: a1dancole or a hosted bridge.</li>
+<li>You do not want to share your Renpho password with any tool: the Apple Health or Health Connect route.</li>
+</ul>
+<p>All direct servers rely on the same unofficial Renpho API, so any of them can break when Renpho changes it.</p>
+</section>
+</main>
+<footer><div class="wrap">
+<p>Renpho MCP Server is an independent open-source project (MIT). It is not affiliated with, endorsed by or sponsored by Renpho. Renpho is a trademark of its owner.</p>
+<p>It uses the unofficial, reverse-engineered <a href="https://pypi.org/project/renpho-api/">renpho-api</a> client, so Renpho can change its API without notice.</p>
+<p><a href="https://github.com/ifthenelse/Renpho-API-MCP-Server">Source</a> · <a href="https://github.com/ifthenelse/Renpho-API-MCP-Server/issues">Issues and proposals</a> · <a href="faq.html">FAQ</a></p>
+</div></footer>
+</body>
+</html>

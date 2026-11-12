@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FAQ: Renpho MCP Server password, status and setup</title>
+<meta name="description" content="Answers about the Renpho MCP server: the unofficial Renpho SDK, how your password is handled, read-only access, Docker, supported AI clients and project status.">
+<link rel="canonical" href="https://ifthenelse.github.io/Renpho-API-MCP-Server/faq.html">
+<meta name="theme-color" content="#0f172a">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="img/favicon.png" type="image/png" sizes="512x512">
+<link rel="apple-touch-icon" href="img/favicon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Renpho MCP Server">
+<meta property="og:title" content="FAQ: Renpho MCP Server password, status and setup">
+<meta property="og:description" content="Answers about the unofficial Renpho SDK, how your password is handled, read-only access, Docker, supported AI clients and project status.">
+<meta property="og:url" content="https://ifthenelse.github.io/Renpho-API-MCP-Server/faq.html">
+<meta property="og:image" content="https://ifthenelse.github.io/Renpho-API-MCP-Server/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Renpho MCP Server: a scale icon connected to a chat bubble">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header><div class="wrap">
+<a class="brand" href="./"><img src="img/mark.svg" alt="" width="36" height="36">Renpho MCP Server</a>
+<nav aria-label="Main"><a href="./#quickstart">Quickstart</a><a href="compare.html">Compare</a><a href="faq.html">FAQ</a><a href="https://github.com/ifthenelse/Renpho-API-MCP-Server">GitHub</a></nav>
+</div></header>
+<main class="wrap">
+<section class="hero"><h1>Frequently asked questions</h1><p class="lead">Status, password handling and setup for the Renpho MCP server.</p></section><section><details><summary>Is this an official Renpho project?</summary><p>No. It is independent and not affiliated with Renpho. It uses the unofficial renpho-api client, which was reverse-engineered, so Renpho can change or block its API at any time. Pin a release tag if you need stability.</p></details><details><summary>What happens to my Renpho password?</summary><p>You put it in a local <code>.env</code> file that is passed to the container at run time. The SDK sends it to Renpho to log in. It is never copied into the image, and the server has no network listener. Your AI model provider sees only the query results the assistant receives, not your password.</p></details><details><summary>Can it change or delete my data?</summary><p>No. All three tools are read-only, and the server does not expose the SDK's upload function.</p></details><details><summary>Has it been tested on a real Renpho account?</summary><p>Not yet publicly. The formatting and filtering logic has unit tests on invented data and the container builds and lists its tools in CI. A live read-only check against a real account is planned, and this page will say so when it is done.</p></details><details><summary>Which Renpho app does it work with?</summary><p>It uses the Renpho Health API through the renpho-api client. Accounts on the legacy Renpho app may not work.</p></details><details><summary>Do I need Docker?</summary><p>The container is the recommended route. If you have Python 3.10+ and uv you can also run <code>uv run renpho-mcp</code> from a clone with <code>RENPHO_EMAIL</code> and <code>RENPHO_PASSWORD</code> set.</p></details><details><summary>Which AI clients work?</summary><p>Any client that can start an MCP server over stdio, including Claude Code, Claude Desktop and Cursor.</p></details><details><summary>How many tokens does it use?</summary><p>Output is compact tab-separated text and you choose the columns, dates and period. A measured comparison against other servers has not been published, so there is no figure yet.</p></details><details><summary>How do I report a problem or suggest something?</summary><p>Open an issue in the <a href="https://github.com/ifthenelse/Renpho-API-MCP-Server/issues">GitHub Issues tab</a>. Please do not post vulnerabilities publicly.</p></details></section>
+</main>
+<footer><div class="wrap">
+<p>Renpho MCP Server is an independent open-source project (MIT). It is not affiliated with, endorsed by or sponsored by Renpho. Renpho is a trademark of its owner.</p>
+<p>It uses the unofficial, reverse-engineered <a href="https://pypi.org/project/renpho-api/">renpho-api</a> client, so Renpho can change its API without notice.</p>
+<p><a href="https://github.com/ifthenelse/Renpho-API-MCP-Server">Source</a> · <a href="https://github.com/ifthenelse/Renpho-API-MCP-Server/issues">Issues and proposals</a> · <a href="faq.html">FAQ</a></p>
+</div></footer>
+</body>
+</html>
