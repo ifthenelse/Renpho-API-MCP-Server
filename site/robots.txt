@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ifthenelse.github.io/Renpho-API-MCP-Server/sitemap.xml
